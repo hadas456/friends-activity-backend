@@ -5,8 +5,6 @@ import { APP_GUARD } from '@nestjs/core';
 
 import dataSource from './database/data-source.js';
 import { AppController } from './app.controller.js';
-import { AnalyticsModule } from './analytics/analytics.module.js';
-import { PipelineModule } from './pipeline/pipeline.module.js';
 import { IngestModule } from './ingest/ingest.module.js';
 import { PipelineV2Module } from './pipeline-v2/pipeline-v2.module.js';
 import { ApiKeyGuard } from './auth/api-key.guard.js';
@@ -33,13 +31,7 @@ function pgConfig() {
 }
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot(pgConfig()),
-    AnalyticsModule,
-    IngestModule,
-    PipelineModule,
-    PipelineV2Module,
-  ],
+  imports: [TypeOrmModule.forRoot(pgConfig()), IngestModule, PipelineV2Module],
   controllers: [AppController],
   providers: [
     {
