@@ -16,6 +16,7 @@ import { AddOwnerUserIdToRepository1755625000000 } from './migrations/1755625000
 import { AddLastSyncedAtToUsers1755630000000 } from './migrations/1755630000000-AddLastSyncedAtToUsers.js';
 import { CreateGraphqlPipelineTables1755900000000 } from './migrations/1755900000000-CreateGraphqlPipelineTables.js';
 import { AddUserRollingActivity1756000000000 } from './migrations/1756000000000-AddUserRollingActivity.js';
+import { DropLegacySchemas1756100000000 } from './migrations/1756100000000-DropLegacySchemas.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,8 +24,6 @@ const __dirname = path.dirname(__filename);
 const DATABASE_URL = process.env.DATABASE_URL;
 
 const entitiesArr: string[] = [
-  path.join(__dirname, '..', 'raw', '**', '*.entity.{ts,js}'),
-  path.join(__dirname, '..', 'analytics', '**', '*.entity.{ts,js}'),
   path.join(__dirname, 'entities', '**', '*.entity.{ts,js}'),
 ];
 
@@ -50,6 +49,7 @@ const dataSource = new DataSource({
     AddLastSyncedAtToUsers1755630000000,
     CreateGraphqlPipelineTables1755900000000,
     AddUserRollingActivity1756000000000,
+    DropLegacySchemas1756100000000,
   ],
   migrationsTableName: 'typeorm_migrations',
   schema: 'public',
